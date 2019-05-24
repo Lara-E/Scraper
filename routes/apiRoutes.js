@@ -54,7 +54,7 @@ module.exports = function(app) {
     });
 
     app.get("/articles/save/:id", function(req, res) {
-        db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true })
+        db.Article.updateOne({ _id: req.params.id},  {$set: { "saved": true }})
             .then(function(dbArticle) {
                 res.redirect("/")
             })
@@ -62,4 +62,6 @@ module.exports = function(app) {
                 res.json(err)
             })
     });
+
+   
 };

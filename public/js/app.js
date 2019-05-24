@@ -1,6 +1,8 @@
 $(document).on("click", ".save-article", function (event) {
     event.preventDefault();
-    var articleId = $(this).data("data-id");
+    console.log("clicked")
+    var articleId = $(this).data("id");
+    console.log(articleId)
     $.ajax({
       url: "/articles/save/" + articleId,
       type: "GET",
@@ -11,7 +13,6 @@ $(document).on("click", ".save-article", function (event) {
   });
 
   $(document).on("click", "#scrape", function(event) {
-      console.log("clicked")
     //   event.preventDefault();
       $.ajax({
           url: "/scrape",

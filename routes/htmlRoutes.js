@@ -12,4 +12,16 @@ module.exports = function(app) {
                 res.render("index", hbsObject)
             });
     });
+
+    app.get("/saved", function(req, res) {
+        db.Article.find({"saved": true})
+            .then(function(dbArticle) {
+                var hbsObject = {
+                    article: dbArticle
+                }
+                console.log(hbsObject)
+                res.render("saved", hbsObject)
+            });
+    });
+
 };
