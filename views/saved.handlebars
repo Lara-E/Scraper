@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Saved Articles</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            {{#each article}}
+            {{#if saved}}
+            <h3><a href="{{link}}">{{title}}</a></h3>
+            <p>{{summary}}</p>
+            <button type="button" class="btn btn-primary add-note" data-id="{{_id}}">Add Note</button>
+            <button type="button" class="btn btn-primary delete-article" data-id="{{_id}}">Delete Article</button>
+            {{/if}}
+            {{/each}}
+
+        </div>
+    </div>
+</div>

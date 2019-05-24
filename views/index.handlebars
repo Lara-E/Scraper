@@ -1,15 +1,30 @@
-<div class="container">
+<ul class="nav">
     <h1>NFL Scraper</h1>
-    <div class="row">
-        <div class="col-lg-12">
-            <h2>Saved Articles</h2>
-            <div id="saved"></div>
-        </div>
-    </div>
+    <li class="nav-item">
+        <a class="nav-link active" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/saved">Saved</a>
+    </li>
+    <button type="button" class="btn btn-primary">Scrape Articles</button>
+</ul>
+<div class="container">
     <div class="row">
         <div class="col-lg-12">
             <h2>New Articles</h2>
-            <div id="new"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <ol>
+                    {{#each article}}
+                    {{#unless saved}}
+                    <h3><a href="{{link}}" class="article-link">{{title}}</a></h3>
+                    <p>{{summary}}</p>
+                    <button type="button" class="btn btn-primary save-article" data-id="{{_id}}">Save Article</button>
+                    {{/unless}}
+                    {{/each}}
+                </ol>
+            </div>
         </div>
     </div>
 </div>
