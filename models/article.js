@@ -7,7 +7,8 @@ var ArticleSchema = new Schema({
   title: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    dropDups: true
   },
   link: {
     type: String,
@@ -23,6 +24,10 @@ var ArticleSchema = new Schema({
   note: {
     type: Schema.Types.ObjectId,
     ref: "Note"
+  },
+  new: {
+    type: Boolean,
+    default: true
   }
 });
 
