@@ -1,3 +1,19 @@
-.hide {
-    visibility: hidden;
+* {
+    box-sizing: border-box;
+}
+
+.nav {
+    background-color: black;
+}
+
+.nfl {
+    color: white;
+}
+
+body {
+    background-image: url("/img/nfl.jpg")
+}
+
+.container {
+    background-color: white;
 }

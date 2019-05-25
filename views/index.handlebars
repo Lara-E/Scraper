@@ -1,33 +1,33 @@
 <ul class="nav">
-    <h1>NFL Scraper</h1>
-    <li class="nav-item">
-        <a class="nav-link active" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/saved">Saved</a>
-    </li>
-    <button id="scrape" type="button" class="btn btn-primary">Scrape Articles</button>
+  <li class="nav-item">
+    <a class="nav-link active" href="/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/saved">Saved</a>
+  </li>
+  <button id="scrape" type="button" class="btn btn-primary">Scrape Articles</button>
+  <h1 class="nfl ml-4">NFL Scraper</h1>
 </ul>
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <h2>New Articles</h2>
-        </div>
-        <div id="articles" class="row">
-            <div class="col-lg-12">
-                {{!-- <h2 id="no-new">Sorry no new articles at this time.</h2> --}}
-                <ol>
-                    {{#each article}}
-                    {{#unless saved}}
-                    <h3><a href="http://espn.com{{link}}" class="article-link">{{title}}</a></h3>
-                    <p>{{summary}}</p>
-                    <button type="button" class="btn btn-primary save-article" data-id="{{_id}}">Save Article</button>
-                    {{/unless}}
-                    {{/each}}
-                </ol>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-lg-12">
     </div>
+    {{#each article}}
+    {{#unless saved}}
+    <div id="articles" class="row">
+      <div class="col-lg-12">
+        {{!-- <h2 id="no-new">Sorry no new articles at this time.</h2> --}}
+        <ol>
+          <h3><a href="http://espn.com{{link}}" class="article-link">{{title}}</a></h3>
+          <p>{{summary}}</p>
+          <button type="button" class="btn btn-primary save-article" data-id="{{_id}}">Save Article</button>
+        </ol>
+        <hr>
+      </div>
+    </div>
+    {{/unless}}
+    {{/each}}
+  </div>
 </div>
 
 <!-- Modal -->

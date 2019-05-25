@@ -1,16 +1,15 @@
 <ul class="nav">
-    <h1>NFL Scraper</h1>
     <li class="nav-item">
         <a class="nav-link" href="/">Home</a>
     </li>
     <li class="nav-item">
         <a class="nav-link active" href="/saved">Saved</a>
     </li>
+    <h1 class="nfl ml-4">NFL Scraper</h1>
 </ul>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h2>Saved Articles</h2>
         </div>
     </div>
     <div class="row">
@@ -21,6 +20,7 @@
             <p>{{summary}}</p>
             <button type="button" class="btn btn-primary add-note" data-id="{{_id}}">Add Note</button>
             <button type="button" class="btn btn-primary delete-article" data-id="{{_id}}">Delete Article</button>
+            <hr>
         </div>
         <div class="col-lg-3">
             <div id="notes">
