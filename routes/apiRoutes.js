@@ -6,7 +6,7 @@ var cheerio = require("cheerio");
 module.exports = function(app) {
     app.get("/scrape", function(req, res) {
 
-        db.Article.update({"new": true}, {$set: {"new": false}}, {multi: true})
+        db.Article.update({ "new": true }, { $set: { "new": false } }, { multi: true })
             .then(function(dbArticle) {
                 res.json(dbArticle);
             })
@@ -54,7 +54,7 @@ module.exports = function(app) {
     });
 
     app.get("/articles/save/:id", function(req, res) {
-        db.Article.updateOne({ _id: req.params.id},  {$set: { "saved": true }})
+        db.Article.updateOne({ _id: req.params.id }, { $set: { "saved": true } })
             .then(function(dbArticle) {
                 res.redirect("/")
             })
@@ -62,4 +62,53 @@ module.exports = function(app) {
                 res.json(err)
             })
     });
-};
+
+    app.post("/articles/:id", function(req, res) {
+        db.Note.create(req.body)
+            .then(function(dbNote) {
+                return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+            })
+            .then(function(dbArticle) {
+                res.json(dbArticle)
+            })
+            .catch(function(err) {
+                res.json(err)
+            })
+    });
+
+    app.get("/articles/:id", function(req, res) {
+        db.Article.findOne({ _id: req.params.id })
+            .populate("note")
+            .then(function(dbArticle) {
+                res.json(dbArticle)
+            })
+            .catch(function(err) {
+                res.json(err)
+            })
+    });
+
+    app.get("/articles/delete/:id", function(req, res) {
+        db.Article.updateOne({ _id: req.params.id }, { $set: { "saved": false } })
+            .then(function(dbArticle) {
+                res.redirect("/saved")
+            })
+            .catch(function(err) {
+                res.json(err)
+            })
+    });
+
+
+    app.delete("/notes/:id", function(req, res) {
+        var id = req.params.id;
+        db.Article.findById(id)
+            .then(function(dbArticle) {
+                var noteId = dbArticle.note;
+                return db.Note.findByIdAndRemove(noteId);
+            }).then(function() {
+                res.json({ "message": "success" })
+            })
+            .catch(function(err) {
+                res.json(err);
+            })
+    })
+}
